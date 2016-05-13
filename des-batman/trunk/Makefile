@@ -62,7 +62,7 @@ build: $(OBJS) $(USER_OBJS)
 	@echo ' '
 
 android: CC=android-gcc
-android: CFLAGS = -I$(DESSERT_LIB)/include
+android: CFLAGS = -I$(DESSERT_LIB)/include -fPIC -pie -lcli
 android: LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib -ldessert 
 android: LIBS =
 android: build package
