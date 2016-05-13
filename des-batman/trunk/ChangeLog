@@ -39,4 +39,7 @@
          - unifying routing tables to the streucture: destination | next hop | out iface addr | daemon specifc
 
 20110321 - Added Android compatibility via #ifdef
-	 - Added the makefile target "android"
+         - Added the makefile target "android"
+20160513 - Added compatibility to Android 4.1+ (PIE)
+         - Removed compatibility to Android 4.0 and lower as a result
+         - *.zip now includes essential icon.png directly

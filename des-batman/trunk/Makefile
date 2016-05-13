@@ -90,6 +90,7 @@ tarball: clean
 
 package:
 	mv $(DAEMON_NAME) android.files/daemon
+	cp icon.png android.files/icon.png
 	zip -j android.files/$(DAEMON_NAME).zip android.files/*
 
 debian: tarball
