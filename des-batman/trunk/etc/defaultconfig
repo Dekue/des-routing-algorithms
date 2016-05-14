@@ -1,0 +1,21 @@
+! set logging
+%useRingbuffer%logging ringbuffer %ringbufferSize%
+loglevel %loglevel%
+
+! set verbose mode
+set verbose %verbose%
+
+! set interval between to OGM messages sent by this host (sek.)
+set ogmint %ogmint%
+
+! use "OGM precursor mode". Must be better in route selection.
+! Has more overhead.
+set ogmprecmode %ogmprecmode%
+
+! set window size of all sliding windows
+! Default : 20
+set windowsize %windowsize%
+
+! Forward OGMs in all cases or only if received from best next hop towards originator.
+! defaults : 0 = FALSE
+set resendogmalways %resendogmalways%
