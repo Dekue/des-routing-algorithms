@@ -1,6 +1,6 @@
 DAEMON_NAME = des-batman
-VERSION_MAJOR = 1
-VERSION_MINOR = 3
+VERSION_MAJOR = 2
+VERSION_MINOR = 0
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 DESTDIR ?=
 
@@ -91,7 +91,8 @@ tarball: clean
 package:
 	mv $(DAEMON_NAME) android.files/daemon
 	cp icon.png android.files/icon.png
-	zip -j android.files/$(DAEMON_NAME).zip android.files/*
+	cp etc/defaultconfig android.files/config.template
+	zip -j android.files/$(DAEMON_NAME)-$(VERSION).zip android.files/*
 
 debian: tarball
 	cp $(DAEMON_NAME)-$(VERSION).tar.gz ../debian/tarballs/$(DAEMON_NAME)_$(VERSION).orig.tar.gz
