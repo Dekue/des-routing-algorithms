@@ -3,6 +3,7 @@ VERSION_MAJOR = 2
 VERSION_MINOR = 0
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 DESTDIR ?=
+S_LIBS = -ldessert -shared -Wl,-soname,libcli.so.1.9.7 -Wl,-y,dessert_cli_cmd_addmeshif -Wl,-y,dessert_cli_cmd_addsysif
 
 DIR_BIN=$(DESTDIR)/usr/sbin
 DIR_ETC=$(DESTDIR)/etc
@@ -62,9 +63,9 @@ build: $(OBJS) $(USER_OBJS)
 	@echo ' '
 
 android: CC=android-gcc
-android: CFLAGS = -I$(DESSERT_LIB)/include -fPIC -pie -lcli
-android: LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib -ldessert 
-android: LIBS =
+android: CFLAGS = -I$(DESSERT_LIB)/include -fpic
+android: LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib
+android: LIBS = $(S_LIBS)
 android: build package
 
 install:
