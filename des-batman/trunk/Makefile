@@ -3,7 +3,7 @@ VERSION_MAJOR = 2
 VERSION_MINOR = 0
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 DESTDIR ?=
-S_LIBS = -ldessert -shared -Wl,-soname,libcli.so.1.9.7 -Wl,-y,dessert_cli_cmd_addmeshif -Wl,-y,dessert_cli_cmd_addsysif
+S_LIBS = -ldessert -ldessertextra -shared -Wl,-soname,libcli.so.1.9.7
 
 DIR_BIN=$(DESTDIR)/usr/sbin
 DIR_ETC=$(DESTDIR)/etc
