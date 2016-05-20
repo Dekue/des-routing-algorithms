@@ -80,7 +80,7 @@ int toMesh(dessert_msg_t* msg, size_t len, dessert_msg_proc_t *proc, dessert_sys
 
 dessert_per_result_t periodic_report_follow(void *data, struct timeval *scheduled, struct timeval *interval) {
 
-	return dessert_log_monitored_neighbour(*hwaddr_follow);
+	return DESSERT_PER_KEEP;//dessert_log_monitored_neighbour(*hwaddr_follow);
 }
 
 static int cli_cmd_follow(struct cli_def *cli, const char *command, char *argv[], int argc) {
