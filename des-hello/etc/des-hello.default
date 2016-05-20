@@ -6,4 +6,4 @@ TAP_IP=$(calc_ip 4)
 TAP_NETMASK=255.255.0.0
 CLI_PORT=4519
 IFACE=wlan0
-LOGFILE="$(HOME)/logs/$(hostname)/des-hello.log"
+LOGFILE="/var/log/des-hello.log"

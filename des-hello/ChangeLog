@@ -1,0 +1,3 @@
+20160520 - changed makefile: daemon will get compiled for dessert-manager-app (android 4.1+)
+         - rearranged directory structure
+         - added default icon, config, ... for android package

@@ -58,14 +58,13 @@ all: build
 build: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(DAEMON_NAME) $(OBJS) $(USER_OBJS) $(LIBS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(DAEMON_NAME) $(OBJS) $(USER_OBJS) $(S_LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-android: CC=android-gcc
+android: CC = android-gcc
 android: CFLAGS = -I$(DESSERT_LIB)/include -fpic
 android: LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib
-android: LIBS = $(S_LIBS)
 android: build package
 
 install:
@@ -79,7 +78,7 @@ install:
 	install -m 755 etc/$(DAEMON_NAME).init $(DIR_ETC_INITD)/$(DAEMON_NAME)
 
 clean:
-	-$(RM) $(OBJS)$(EXECUTABLES)$(C_DEPS) $(DAEMON_NAME) $(DAEMON_NAME)-$(VERSION).tar.gz $(DAEMON_NAME)-$(VERSION) android/daemon android/$(DAEMON_NAME).zip
+	-$(RM) $(OBJS)$(EXECUTABLES)$(C_DEPS) $(DAEMON_NAME) $(DAEMON_NAME)-$(VERSION).tar.gz $(DAEMON_NAME)-$(VERSION) android.files/daemon android.files/icon.png android.files/config.template android.files/$(DAEMON_NAME)-$(VERSION).zip
 	-@echo ' '
 
 tarball: clean
