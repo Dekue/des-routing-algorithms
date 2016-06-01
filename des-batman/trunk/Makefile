@@ -3,7 +3,7 @@ VERSION_MAJOR = 2
 VERSION_MINOR = 0
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 DESTDIR ?=
-S_LIBS = -ldessert -lcli -shared -Wl,-soname,libdessertextra.so.0.2
+S_LIBS = -ldessert -lcli -Wl,-soname,libdessertextra.so.0.2
 
 DIR_BIN=$(DESTDIR)/usr/sbin
 DIR_ETC=$(DESTDIR)/etc
@@ -63,7 +63,7 @@ build: $(OBJS) $(USER_OBJS)
 	@echo ' '
 
 android: CC = android-gcc
-android: CFLAGS = -I$(DESSERT_LIB)/include -fpic
+android: CFLAGS = -I$(DESSERT_LIB)/include -fpic -pie
 android: LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib
 android: build package
 

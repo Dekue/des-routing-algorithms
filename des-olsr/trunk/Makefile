@@ -1,8 +1,9 @@
 DAEMON_NAME = des-olsr
-VERSION_MAJOR = 1
-VERSION_MINOR = 7
+VERSION_MAJOR = 2
+VERSION_MINOR = 0
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 DESTDIR ?=
+S_LIBS = -ldessert -lcli -Wl,-soname,libdessertextra.so.0.2
 
 DIR_BIN=$(DESTDIR)/usr/sbin
 DIR_ETC=$(DESTDIR)/etc
@@ -46,19 +47,20 @@ all: build
 build: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(DAEMON_NAME) $(OBJS) $(USER_OBJS) $(LIBS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(DAEMON_NAME) $(OBJS) $(USER_OBJS) $(S_LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-android: CC=android-gcc
-android: CFLAGS = -I$(DESSERT_LIB)/include
-android: LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib -ldessert
-android: LIBS =
+android: CC = android-gcc
+android: CFLAGS = -I$(DESSERT_LIB)/include -fpic -pie
+android: LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib
 android: clean build package
 
 package:
 	mv $(DAEMON_NAME) android.files/daemon
-	zip -j android.files/$(DAEMON_NAME).zip android.files/*
+	cp icon.png android.files/icon.png
+	cp etc/des-olsr.conf android.files/config.template
+	zip -j android.files/$(DAEMON_NAME)-$(VERSION).zip android.files/*
 
 install:
 	mkdir -p $(DIR_BIN)
