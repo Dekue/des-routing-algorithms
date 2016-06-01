@@ -4,8 +4,8 @@ VERSION_MINOR = 0
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 
 CC = android-gcc
-LIBS = -ldessert -lcli -shared
-CFLAGS = -O0 -I$(DESSERT_LIB)/include -fpic
+LIBS = -ldessert -lcli
+CFLAGS = -O0 -I$(DESSERT_LIB)/include -fpic -pie
 LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib
 SOURCE = src/$(addsuffix .c,$(DAEMON_NAME))
 
