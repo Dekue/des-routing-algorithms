@@ -1,8 +1,9 @@
 DAEMONNAME = des-lsr
-VERSION_MAJOR = 0
-VERSION_MINOR = 3
+VERSION_MAJOR = 2
+VERSION_MINOR = 0
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 DESTDIR ?=
+S_LIBS = -ldessert -lcli -Wl,-soname,libdessertextra.so.0.2
 
 DIR_BIN = $(DESTDIR)/usr/sbin
 DIR_ETC = $(DESTDIR)/etc
@@ -41,16 +42,17 @@ install:
 	install -m 755 $(FILE_INIT) $(DIR_INIT)/$(DAEMONNAME)
 
 build: $(addsuffix .o,$(MODULES))
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(DAEMONNAME) $(addsuffix .o,$(MODULES))
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(DAEMONNAME) $(addsuffix .o,$(MODULES)) $(S_LIBS)
 
-android: CC=android-gcc
-android: CFLAGS=-I$(DESSERT_LIB)/include
-android: LDFLAGS=-L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib -ldessert
+android: CC = android-gcc
+android: CFLAGS = -I$(DESSERT_LIB)/include -fpic -pie
+android: LDFLAGS = -L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib
 android: build package
 
 package:
-	mv $(DAEMONNAME) android.files/daemon
-	zip -j android.files/$(DAEMONNAME).zip android.files/*
+	mv $(DAEMON_NAME) android.files/daemon
+	cp icon.png android.files/icon.png
+	zip -j android.files/$(DAEMON_NAME)-$(VERSION).zip android.files/*
 
 tarball: clean
 	mkdir des-lsr
