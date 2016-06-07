@@ -37,12 +37,12 @@ static const char* ara_ack_mode_strings[] = { "LINK", "PASSIVE", "NETWORK", "DIS
 
 /*****************************************************************************/
 
-int cli_show_ara_ack_credit_inc(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_ack_credit_inc(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "credit is increased by %04.02lf when an ack is received ", ara_ack_credit_inc);
     return CLI_OK;
 }
 
-int cli_set_ara_ack_credit_inc(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_ack_credit_inc(struct cli_def* cli, const char* command, char* argv[], int argc) {
     double i;
 
     if(argc != 1) {
@@ -81,14 +81,14 @@ int cli_set_ara_ack_miss_credit(struct cli_def* cli, char* command, char* argv[]
     return CLI_OK;
 }
 
-int cli_show_ara_ack_miss_credit(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_ack_miss_credit(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "%04.02lf acknowledgements may be missed before a route is dropped in PASSIVE mode", ara_ack_miss_credit);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_prune_routes(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_prune_routes(struct cli_def* cli, const char* command, char* argv[], int argc) {
     double i;
 
     if(argc != 1) {
@@ -109,7 +109,7 @@ int cli_set_prune_routes(struct cli_def* cli, char* command, char* argv[], int a
     return CLI_OK;
 }
 
-int cli_show_prune_routes(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_prune_routes(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(ara_prune_routes) {
         cli_print(cli, "altervative routes that are more than %04.02lf times longer than the shortest path are not accepted", ara_prune_routes);
     }
@@ -122,7 +122,7 @@ int cli_show_prune_routes(struct cli_def* cli, char* command, char* argv[], int 
 
 /*****************************************************************************/
 
-int cli_set_pant_interval(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_pant_interval(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -138,7 +138,7 @@ int cli_set_pant_interval(struct cli_def* cli, char* command, char* argv[], int 
     return CLI_OK;
 }
 
-int cli_show_pant_interval(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_pant_interval(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(ara_pant_interval) {
         cli_print(cli, "PANT interval is set to %d seconds", ara_pant_interval);
     }
@@ -151,7 +151,7 @@ int cli_show_pant_interval(struct cli_def* cli, char* command, char* argv[], int
 
 /*****************************************************************************/
 
-int cli_set_ara_print_rt_periodic(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_print_rt_periodic(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -185,7 +185,7 @@ int cli_show_ara_print_rt_periodic(struct cli_def* cli, char* command, char* arg
 }
 
 /*****************************************************************************/
-int cli_set_ara_print_cl_periodic(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_print_cl_periodic(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -207,7 +207,7 @@ int cli_set_ara_print_cl_periodic(struct cli_def* cli, char* command, char* argv
     return CLI_OK;
 }
 
-int cli_show_ara_print_cl_periodic(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_print_cl_periodic(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(ara_print_cl_interval_s) {
         cli_print(cli, "path classification table is printed every %d seconds", ara_print_cl_interval_s);
     }
@@ -220,7 +220,7 @@ int cli_show_ara_print_cl_periodic(struct cli_def* cli, char* command, char* arg
 
 /*****************************************************************************/
 
-int cli_set_ara_ack_wait_ms(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_ack_wait_ms(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint16_t i;
 
     if(argc != 1) {
@@ -236,19 +236,19 @@ int cli_set_ara_ack_wait_ms(struct cli_def* cli, char* command, char* argv[], in
     return CLI_OK;
 }
 
-int cli_show_ara_ack_wait_ms(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_ack_wait_ms(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "acknowledgements are expected to arrive in %d ms", ara_ack_wait_ms);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_show_ndisjoint(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ndisjoint(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "node disjoint mode is %s", (ara_ndisjoint == 0) ? "disabled" : "enabled");
     return CLI_OK;
 }
 
-int cli_set_ndisjoint(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ndisjoint(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(argc != 1) {
         cli_print(cli, "usage %s [on, off]", command);
         return CLI_ERROR;
@@ -272,12 +272,12 @@ int cli_set_ndisjoint(struct cli_def* cli, char* command, char* argv[], int argc
 
 /*****************************************************************************/
 
-int cli_show_ara_adap_evaporation(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_adap_evaporation(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "adaptive evaporation is %s", (ara_adap_evaporation == 0) ? "disabled" : "enabled");
     return CLI_OK;
 }
 
-int cli_set_ara_adap_evaporation(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_adap_evaporation(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(argc != 1) {
         cli_print(cli, "usage %s [on, off]", command);
         return CLI_ERROR;
@@ -301,12 +301,12 @@ int cli_set_ara_adap_evaporation(struct cli_def* cli, char* command, char* argv[
 
 /*****************************************************************************/
 
-int cli_show_ara_backwards_inc(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_backwards_inc(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "backwards pheromone trail increase is %s", (ara_backwards_inc == 0) ? "disabled" : "enabled");
     return CLI_OK;
 }
 
-int cli_set_ara_backwards_inc(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_backwards_inc(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(argc != 1) {
         cli_print(cli, "usage %s [on, off]", command);
         return CLI_ERROR;
@@ -330,12 +330,12 @@ int cli_set_ara_backwards_inc(struct cli_def* cli, char* command, char* argv[], 
 
 /*****************************************************************************/
 
-int cli_show_rtprob_bants(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_rtprob_bants(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "route problem BANTs are %s", (ara_rtprob_bants == 0) ? "disabled" : "enabled");
     return CLI_OK;
 }
 
-int cli_set_rtprob_bants(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_rtprob_bants(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(argc != 1) {
         cli_print(cli, "usage %s [on, off]", command);
         return CLI_ERROR;
@@ -362,7 +362,7 @@ int cli_set_rtprob_bants(struct cli_def* cli, char* command, char* argv[], int a
 
 /*****************************************************************************/
 
-int cli_set_ara_retry_delay_ms(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_retry_delay_ms(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint16_t i;
 
     if(argc != 1) {
@@ -382,14 +382,14 @@ int cli_set_ara_retry_delay_ms(struct cli_def* cli, char* command, char* argv[],
     return CLI_OK;
 }
 
-int cli_show_ara_retry_delay_ms(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_retry_delay_ms(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_retry_delay_ms = %d", ara_retry_delay_ms);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_ara_retry_max(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_retry_max(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -409,14 +409,14 @@ int cli_set_ara_retry_max(struct cli_def* cli, char* command, char* argv[], int 
     return CLI_OK;
 }
 
-int cli_show_ara_retry_max(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_retry_max(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_retry_max = %d", ara_retry_max);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_ara_clsf_lossmin(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_clsf_lossmin(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -436,13 +436,13 @@ int cli_set_ara_clsf_lossmin(struct cli_def* cli, char* command, char* argv[], i
     return CLI_OK;
 }
 
-int cli_show_ara_clsf_lossmin(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_clsf_lossmin(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_clsf_lossmin = %d", ara_clsf_lossmin);
     return CLI_OK;
 }
 
 /*****************************************************************************/
-int cli_set_ara_clsf_lossmax(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_clsf_lossmax(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -462,14 +462,14 @@ int cli_set_ara_clsf_lossmax(struct cli_def* cli, char* command, char* argv[], i
     return CLI_OK;
 }
 
-int cli_show_ara_clsf_lossmax(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_clsf_lossmax(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_clsf_lossmax = %d", ara_clsf_lossmax);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_ara_clsf_tick_interval_s(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_clsf_tick_interval_s(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -489,14 +489,14 @@ int cli_set_ara_clsf_tick_interval_s(struct cli_def* cli, char* command, char* a
     return CLI_OK;
 }
 
-int cli_show_ara_clsf_tick_interval_s(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_clsf_tick_interval_s(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_clsf_tick_interval_s = %d", ara_clsf_tick_interval_s);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_ara_clsf_skiptimes(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_clsf_skiptimes(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -516,14 +516,14 @@ int cli_set_ara_clsf_skiptimes(struct cli_def* cli, char* command, char* argv[],
     return CLI_OK;
 }
 
-int cli_show_ara_clsf_skiptimes(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_clsf_skiptimes(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_clsf_skiptimes = %d", ara_clsf_skiptimes);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_ara_clsf_sw_size(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_clsf_sw_size(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -543,14 +543,14 @@ int cli_set_ara_clsf_sw_size(struct cli_def* cli, char* command, char* argv[], i
     return CLI_OK;
 }
 
-int cli_show_ara_clsf_sw_size(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_clsf_sw_size(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_clsf_sw_size = %d", ara_clsf_sw_size);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_ara_clsf_sender_rate(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_clsf_sender_rate(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint16_t i;
 
     if(argc != 1) {
@@ -570,19 +570,19 @@ int cli_set_ara_clsf_sender_rate(struct cli_def* cli, char* command, char* argv[
     return CLI_OK;
 }
 
-int cli_show_ara_clsf_sender_rate(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_clsf_sender_rate(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_clsf_sender_rate = %d", ara_clsf_sender_rate);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_show_ara_classify(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_classify(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "path classification is %s", (ara_classify == 0) ? "disabled" : "enabled");
     return CLI_OK;
 }
 
-int cli_set_ara_classify(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_classify(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(argc != 1) {
         cli_print(cli, "usage %s [on, off]", command);
         return CLI_ERROR;
@@ -606,7 +606,7 @@ int cli_set_ara_classify(struct cli_def* cli, char* command, char* argv[], int a
 
 /*****************************************************************************/
 
-int cli_set_ara_ack_mode(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_ack_mode(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(argc != 1) {
         cli_print(cli, "usage %s [LINK, PASSIVE, NETWORK, DISABLED]", command);
         return CLI_ERROR;
@@ -638,7 +638,7 @@ int cli_set_ara_ack_mode(struct cli_def* cli, char* command, char* argv[], int a
     return CLI_OK;
 }
 
-int cli_show_ara_ack_mode(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_ack_mode(struct cli_def* cli, const char* command, char* argv[], int argc) {
     switch(ara_ack_mode) {
         case ARA_ACK_LINK:
         case ARA_ACK_PASSIVE:
@@ -656,7 +656,7 @@ int cli_show_ara_ack_mode(struct cli_def* cli, char* command, char* argv[], int 
 
 /*****************************************************************************/
 
-int cli_set_ara_forw_mode(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_forw_mode(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(argc != 1) {
         cli_print(cli, "usage %s [BEST, WEIGHTED, RANDOM]", command);
         return CLI_ERROR;
@@ -682,7 +682,7 @@ int cli_set_ara_forw_mode(struct cli_def* cli, char* command, char* argv[], int 
     return CLI_OK;
 }
 
-int cli_show_ara_forw_mode(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_forw_mode(struct cli_def* cli, const char* command, char* argv[], int argc) {
     switch(ara_forw_mode) {
         case ARA_FORW_B:
             cli_print(cli, "forward mode is set to %s", ara_forw_mode_strings[ara_forw_mode]);
@@ -703,7 +703,7 @@ int cli_show_ara_forw_mode(struct cli_def* cli, char* command, char* argv[], int
 
 /*****************************************************************************/
 
-int cli_set_ara_ptrail_mode(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_ptrail_mode(struct cli_def* cli, const char* command, char* argv[], int argc) {
     if(argc != 1) {
         cli_print(cli, "usage %s [CLASSIC, CUBIC]", command);
         return CLI_ERROR;
@@ -728,7 +728,7 @@ int cli_set_ara_ptrail_mode(struct cli_def* cli, char* command, char* argv[], in
     return CLI_OK;
 }
 
-int cli_show_ara_ptrail_mode(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_ptrail_mode(struct cli_def* cli, const char* command, char* argv[], int argc) {
     switch(ara_ptrail_mode) {
         case ARA_PTRAIL_CLASSIC:
         case ARA_PTRAIL_CUBIC:
@@ -745,7 +745,7 @@ int cli_show_ara_ptrail_mode(struct cli_def* cli, char* command, char* argv[], i
 
 /*****************************************************************************/
 
-int cli_set_rt_min_pheromone(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_rt_min_pheromone(struct cli_def* cli, const char* command, char* argv[], int argc) {
     double d;
 
     if(argc != 1) {
@@ -765,14 +765,14 @@ int cli_set_rt_min_pheromone(struct cli_def* cli, char* command, char* argv[], i
     return CLI_OK;
 }
 
-int cli_show_rt_min_pheromone(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_rt_min_pheromone(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "rt_min_pheromone = %f", rt_min_pheromone);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_rt_delta_q(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_rt_delta_q(struct cli_def* cli, const char* command, char* argv[], int argc) {
     double d;
 
     if(argc != 1) {
@@ -792,19 +792,19 @@ int cli_set_rt_delta_q(struct cli_def* cli, char* command, char* argv[], int arg
     return CLI_OK;
 }
 
-int cli_show_rt_delta_q(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_rt_delta_q(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "rt_delta_q = %f", rt_delta_q);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_show_rt_initial(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_rt_initial(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "rt_initial = %f", rt_initial);
     return CLI_OK;
 }
 
-int cli_set_rt_initial(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_rt_initial(struct cli_def* cli, const char* command, char* argv[], int argc) {
     double d;
 
     if(argc != 1) {
@@ -826,7 +826,7 @@ int cli_set_rt_initial(struct cli_def* cli, char* command, char* argv[], int arg
 
 /*****************************************************************************/
 
-int cli_set_rt_inc(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_rt_inc(struct cli_def* cli, const char* command, char* argv[], int argc) {
     double d;
 
     if(argc != 1) {
@@ -846,14 +846,14 @@ int cli_set_rt_inc(struct cli_def* cli, char* command, char* argv[], int argc) {
     return CLI_OK;
 }
 
-int cli_show_rt_inc(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_rt_inc(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "rt_inc = %f", rt_inc);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_rt_tick_interval(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_rt_tick_interval(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint8_t i;
 
     if(argc != 1) {
@@ -873,14 +873,14 @@ int cli_set_rt_tick_interval(struct cli_def* cli, char* command, char* argv[], i
     return CLI_OK;
 }
 
-int cli_show_rt_tick_interval(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_rt_tick_interval(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "rt_tick_interval = %d", rt_tick_interval);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_set_ara_trace_broadcastlen(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ara_trace_broadcastlen(struct cli_def* cli, const char* command, char* argv[], int argc) {
     int i;
 
     if(argc != 1) {
@@ -900,14 +900,14 @@ int cli_set_ara_trace_broadcastlen(struct cli_def* cli, char* command, char* arg
     return CLI_OK;
 }
 
-int cli_show_ara_trace_broadcastlen(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ara_trace_broadcastlen(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "ara_trace_broadcastlen = %d", (uint16_t) ara_trace_broadcastlen);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 // Weng Yu add ara_ant_size
-int cli_set_ara_ant_size(struct cli_def *cli, char *command, char *argv[], int argc) {
+int cli_set_ara_ant_size(struct cli_def *cli, const char *command, char *argv[], int argc) {
     size_t i;
     if(argc != 1) {
         cli_print(cli, "usage %s [0..2^16-1]", command);
@@ -921,14 +921,14 @@ int cli_set_ara_ant_size(struct cli_def *cli, char *command, char *argv[], int a
     return CLI_OK;
 }
 
-int cli_show_ara_ant_size(struct cli_def *cli, char *command, char *argv[], int argc) {
+int cli_show_ara_ant_size(struct cli_def *cli, const char *command, char *argv[], int argc) {
     cli_print(cli, "ANT Size is set to %d", ara_ant_size);
     return CLI_OK;
 }
 
 /*****************************************************************************/
 
-int cli_show_ara_config(struct cli_def *cli, char *command, char *argv[], int argc) {
+int cli_show_ara_config(struct cli_def *cli, const char *command, char *argv[], int argc) {
     cli_print(cli, "ara_prune_routes = %04.02lf", ara_prune_routes);
     cli_print(cli, "ara_pant_interval = %d", ara_pant_interval);
     cli_print(cli, "ara_ant_size = %d", ara_ant_size);
@@ -960,7 +960,7 @@ int cli_show_ara_config(struct cli_def *cli, char *command, char *argv[], int ar
     return CLI_OK;
 }
 
-int cli_flush_all(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_flush_all(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_flushroutingtable(cli, command, argv, argc);
     cli_flushclassifictable(cli, command, argv, argc);
     cli_flush_loopprotec_table(cli, command, argv, argc);

@@ -1085,7 +1085,7 @@ dessert_per_result_t ara_print_rt_periodic(void* data, struct timeval* scheduled
  *
  * Print all routing table entries to the CLI.
  */
-int cli_showroutingtable(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_showroutingtable(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_newrte_t* entry = NULL;
 
     pthread_rwlock_rdlock(&rtlock);
@@ -1111,7 +1111,7 @@ int cli_showroutingtable(struct cli_def* cli, char* command, char* argv[], int a
  *
  * Flush all routing table entries.
  */
-int cli_flushroutingtable(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_flushroutingtable(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_newrte_t* entry = NULL;
 
     pthread_rwlock_wrlock(&rtlock);
@@ -1207,7 +1207,7 @@ ara_rt_update_res_t ara_rt_delete(ara_address_t dst, ara_address_t nexthop, dess
 
 	}
         else { // nexthops still there
-		DL_DELETE(entry->nexthops, cur)
+		DL_DELETE(entry->nexthops, cur);
                 free(cur);
                 dessert_debug("dropping nexthop, not the first/best, num_nexthops=%2d", entry->num_nexthops);
 

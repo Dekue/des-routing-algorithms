@@ -191,17 +191,17 @@ typedef uint16_t ara_seq_t;
 
 extern struct cli_command* cli_cfg_set;
 
-int cli_showpackettrap(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_showroutingtable(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_flushroutingtable(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_flushclassifictable(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_showloopprotect_table(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_showclassifictable(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_showloopprotect_statistics(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_flush_ack_monitor(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_show_ack_monitor(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_flush_loopprotec_table(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_flush_rmnt(struct cli_def* cli, char* command, char* argv[], int argc);
+int cli_showpackettrap(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_showroutingtable(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_flushroutingtable(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_flushclassifictable(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_showloopprotect_table(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_showclassifictable(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_showloopprotect_statistics(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_flush_ack_monitor(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_show_ack_monitor(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_flush_loopprotec_table(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_flush_rmnt(struct cli_def* cli, const char* command, char* argv[], int argc);
 
 ara_seq_t ara_seq_next();
 void ara_addseq(dessert_msg_t* msg);

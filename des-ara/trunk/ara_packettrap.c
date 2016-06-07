@@ -196,7 +196,7 @@ dessert_per_result_t ara_routefail_untrap_packets(void* data, struct timeval* sc
  *
  * Print the content of the packet trap.
  */
-int cli_showpackettrap(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_showpackettrap(struct cli_def* cli, const char* command, char* argv[], int argc) {
     packettrap_t* tr = NULL;
 
     pthread_rwlock_rdlock(&traped_packets_lock);

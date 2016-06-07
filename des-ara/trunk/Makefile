@@ -1,6 +1,6 @@
 DAEMONNAME = des-ara
-VERSION_MAJOR = 2
-VERSION_MINOR = 1
+VERSION_MAJOR = 3
+VERSION_MINOR = 0
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 DESTDIR ?= /usr/sbin
 PREFIX ?=
@@ -17,9 +17,8 @@ FILE_DEFAULT = ./$(DAEMONNAME).default
 FILE_ETC = ./$(DAEMONNAME).conf
 FILE_INIT = ./$(DAEMONNAME).init
 
-LIBS = dessert  m cli pthread
-CFLAGS += -ggdb -W -Wall -Os -mtune=native -DTARGET_$(UNAME) -D_GNU_SOURCE -DVERSION_MAJOR=$(VERSION_MAJOR) -DVERSION_MINOR=$(VERSION_MINOR)
-LDFLAGS += $(addprefix -l,$(LIBS))
+S_LIBS = -ldessert -lm -lcli
+CFLAGS += -ggdb -W -Wall -Os -mtune=native -DTARGET_$(UNAME) -D_GNU_SOURCE -DVERSION_MAJOR=$(VERSION_MAJOR) -DVERSION_MINOR=$(VERSION_MINOR) -DHAVE_PTHREADS
 
 all: ara
 
@@ -39,17 +38,19 @@ install:
 	install -m 755 $(FILE_INIT) $(DIR_INIT)/$(DAEMONNAME)
 
 ara:	$(addsuffix .o,$(MODULES)) ara.h
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(DAEMONNAME) $(addsuffix .o,$(MODULES))
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(DAEMONNAME) $(addsuffix .o,$(MODULES)) $(S_LIBS)
 
 
 android: CC=android-gcc
-android: CFLAGS=-I$(DESSERT_LIB)/include -DVERSION_MAJOR=$(VERSION_MAJOR) -DVERSION_MINOR=$(VERSION_MINOR)
-android: LDFLAGS=-L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib -ldessert
+android: CFLAGS=-I$(DESSERT_LIB)/include -DVERSION_MAJOR=$(VERSION_MAJOR) -DVERSION_MINOR=$(VERSION_MINOR) -fpic -pie
+android: LDFLAGS=-L$(DESSERT_LIB)/lib -Wl,-rpath-link=$(DESSERT_LIB)/lib
 android: ara package
 
 package:
 	mv $(DAEMONNAME) android.files/daemon
-	zip -j android.files/$(DAEMONNAME).zip android.files/*
+	cp icon.png android.files/icon.png
+	cp des-ara.conf android.files/config.template
+	zip -j android.files/$(DAEMONNAME)-$(VERSION).zip android.files/*
 
 tarball: clean
 	mkdir $(DAEMONNAME)-$(VERSION)

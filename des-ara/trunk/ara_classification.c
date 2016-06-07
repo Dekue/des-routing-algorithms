@@ -325,7 +325,7 @@ ara_clsf_update_res_t ara_cl_delete(ara_address_t dst, ara_address_t src, ara_ad
                 }
         }
         else { // paths still there
-                DL_DELETE(entry->paths, cur)
+                DL_DELETE(entry->paths, cur);
                 free(cur);
                 dessert_debug("dropping path, not the last, num_paths=%2d", entry->num_paths);
         }
@@ -795,7 +795,7 @@ void ara_classification_init() {
 }
 
 /** CLI command - config mode - interface tap $iface, $ipv4-addr, $netmask */
-int cli_showclassifictable(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_showclassifictable(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_pcte_t* entry = NULL;
 
     pthread_rwlock_rdlock(&pctlock);
@@ -817,7 +817,7 @@ int cli_showclassifictable(struct cli_def* cli, char* command, char* argv[], int
  *
  * Remove all entries from path classification table.
  */
-int cli_flushclassifictable(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_flushclassifictable(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_pcte_t* cur = NULL;
 
     pthread_rwlock_wrlock(&pctlock);

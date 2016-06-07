@@ -364,7 +364,7 @@ void ara_loopprotect_init() {
 }
 
 /** CLI command - config mode - interface tap $iface, $ipv4-addr, $netmask */
-int cli_showloopprotect_table(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_showloopprotect_table(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_lpte_t* lp = NULL;
 
     pthread_rwlock_rdlock(&lplock);
@@ -387,7 +387,7 @@ int cli_showloopprotect_table(struct cli_def* cli, char* command, char* argv[], 
 }
 
 /** CLI command - config mode - interface tap $iface, $ipv4-addr, $netmask */
-int cli_showloopprotect_statistics(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_showloopprotect_statistics(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "\nloopprotect_statistics:");
     cli_print(cli, "\tseen:         %10d", loopprotect_seen);
     cli_print(cli, "\tlate:         %10d", loopprotect_late);
@@ -403,7 +403,7 @@ int cli_showloopprotect_statistics(struct cli_def* cli, char* command, char* arg
  * Flush loop protection table. Subsequently received duplicates will not be
  * detected!
  */
-int cli_flush_loopprotec_table(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_flush_loopprotec_table(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_lpte_t* cur = NULL;
 
     pthread_rwlock_wrlock(&lplock);

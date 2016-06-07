@@ -128,7 +128,7 @@ int ara_maintainroute_pant(dessert_msg_t* msg, size_t len, dessert_msg_proc_t* p
  * Flush route management table. This will generate a BANT for each first unicast
  * packet received from any source.
  */
-int cli_flush_rmnt(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_flush_rmnt(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_usage_t* cur = NULL;
 
     pthread_rwlock_wrlock(&ullock);

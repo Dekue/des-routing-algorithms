@@ -234,7 +234,7 @@ void ara_ack_init() {
  *
  * Print all routing table entries to the CLI.
  */
-int cli_show_ack_monitor(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ack_monitor(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_wait_ack_t* cur = NULL;
 
     pthread_rwlock_rdlock(&acklock);
@@ -254,7 +254,7 @@ int cli_show_ack_monitor(struct cli_def* cli, char* command, char* argv[], int a
  *
  * Flush all ack monitor entries.
  */
-int cli_flush_ack_monitor(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_flush_ack_monitor(struct cli_def* cli, const char* command, char* argv[], int argc) {
     ara_wait_ack_t* cur = NULL;
 
     pthread_rwlock_wrlock(&acklock);
