@@ -33,7 +33,7 @@ For further information and questions please use the web site
 
 // ----------------------- Setup -----------------------------------------------------
 
-int cli_set_window_size(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_window_size(struct cli_def* cli, const char* command, char* argv[], int argc) {
     unsigned int new_window_size;
 
     if(argc != 1 || sscanf(argv[0], "%u", &new_window_size) != 1) {
@@ -50,7 +50,7 @@ int cli_set_window_size(struct cli_def* cli, char* command, char* argv[], int ar
     return CLI_OK;
 }
 
-int cli_set_ogm_resend_mode(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ogm_resend_mode(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint32_t mode;
 
     if(argc != 1 || sscanf(argv[0], "%u", &mode) != 1 || (mode != 0 && mode != 1)) {
@@ -70,7 +70,7 @@ int cli_set_ogm_resend_mode(struct cli_def* cli, char* command, char* argv[], in
     return CLI_OK;
 }
 
-int cli_set_ogm_precursor_mode(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ogm_precursor_mode(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint32_t mode;
 
     if(argc != 1 || sscanf(argv[0], "%u", &mode) != 1 || (mode != 0 && mode != 1)) {
@@ -90,7 +90,7 @@ int cli_set_ogm_precursor_mode(struct cli_def* cli, char* command, char* argv[],
     return CLI_OK;
 }
 
-int cli_set_ogm_size(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ogm_size(struct cli_def* cli, const char* command, char* argv[], int argc) {
     uint16_t min_size = sizeof(dessert_msg_t) + sizeof(struct ether_header) + 2;
 
     if(argc != 1) {
@@ -110,7 +110,7 @@ int cli_set_ogm_size(struct cli_def* cli, char* command, char* argv[], int argc)
     return CLI_OK;
 }
 
-int cli_set_ogm_interval(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_set_ogm_interval(struct cli_def* cli, const char* command, char* argv[], int argc) {
     unsigned int new_ogm_int;
 
     if(argc != 1 || sscanf(argv[0], "%u", &new_ogm_int) != 1) {
@@ -126,7 +126,7 @@ int cli_set_ogm_interval(struct cli_def* cli, char* command, char* argv[], int a
 
 // ----------------------- CLI Debug and Report --------------------------------------
 
-int cli_show_rt(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_rt(struct cli_def* cli, const char* command, char* argv[], int argc) {
     char* rt_report;
     batman_db_rlock();
     batman_db_view_routingtable(&rt_report);
@@ -136,12 +136,12 @@ int cli_show_rt(struct cli_def* cli, char* command, char* argv[], int argc) {
     return CLI_OK;
 }
 
-int cli_show_ogm_interval(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ogm_interval(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "OGM interval = %d millisec\n", ogm_interval);
     return CLI_OK;
 }
 
-int cli_show_ogm_size(struct cli_def* cli, char* command, char* argv[], int argc) {
+int cli_show_ogm_size(struct cli_def* cli, const char* command, char* argv[], int argc) {
     cli_print(cli, "OGM size = %d bytes\n", ogm_size);
     return CLI_OK;
 }

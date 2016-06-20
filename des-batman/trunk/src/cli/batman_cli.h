@@ -23,14 +23,14 @@ For further information and questions please use the web site
 
 #include <libcli.h>
 
-int cli_set_window_size(struct cli_def* cli, char* command, char* argv[], int argc);		// change window size of all sliding windows in routing table
-int cli_set_ogm_interval(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_set_ogm_size(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_set_port(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_set_routing_log(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_set_ogm_resend_mode(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_set_ogm_precursor_mode(struct cli_def* cli, char* command, char* argv[], int argc);
+int cli_set_window_size(struct cli_def* cli, const char* command, char* argv[], int argc);		// change window size of all sliding windows in routing table
+int cli_set_ogm_interval(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_set_ogm_size(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_set_port(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_set_routing_log(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_set_ogm_resend_mode(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_set_ogm_precursor_mode(struct cli_def* cli, const char* command, char* argv[], int argc);
 
-int cli_show_rt(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_show_ogm_interval(struct cli_def* cli, char* command, char* argv[], int argc);
-int cli_show_ogm_size(struct cli_def* cli, char* command, char* argv[], int argc);
+int cli_show_rt(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_show_ogm_interval(struct cli_def* cli, const char* command, char* argv[], int argc);
+int cli_show_ogm_size(struct cli_def* cli, const char* command, char* argv[], int argc);
